@@ -1,16 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
-
-Route::get('/about', function () {
-    return Inertia::render('About');
-});
-
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', AboutController::class);
+Route::get('/contact', [ContactController::class, 'index']);
