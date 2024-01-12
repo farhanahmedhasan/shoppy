@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,11 +12,7 @@ class RegisterController extends Controller
         return Inertia::render('auth/AuthRegister');
     }
 
-    public function store(Request $request){
-        $attributes = $request->validate([
-            'username'=> 'required | min:6 | max:24',
-            'email' => 'email | required',
-            'password' => 'required | min:8 | max:32'
-        ]);
+    public function store(StoreUserRequest $request){
+        $attributes = $request->validate();
     }
 }
