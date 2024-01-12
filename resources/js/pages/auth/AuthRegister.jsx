@@ -1,9 +1,11 @@
-import React from "react";
-import AppLayout from "../../layouts/AppLayout";
 import { useForm } from "@inertiajs/react";
+import React from "react";
+
+import InputError from "../../components/ui/InputError";
+import AppLayout from "../../layouts/AppLayout";
 
 export default function AuthRegister() {
-    const { data, setData, post } = useForm({
+    const { data, setData, post, errors } = useForm({
         username: "",
         email: "",
         password: "",
@@ -39,7 +41,11 @@ export default function AuthRegister() {
                         onChange={handleChange}
                         placeholder="Enter a unique username"
                         className="w-full py-1 px-2 border rounded"
+                        required
                     />
+                    {errors.username && (
+                        <InputError errorMessage={errors.username} />
+                    )}
                 </div>
                 <div>
                     <label htmlFor="email" className="block text-sm mb-1">
@@ -53,7 +59,9 @@ export default function AuthRegister() {
                         onChange={handleChange}
                         placeholder="Enter your email"
                         className="w-full py-1 px-2 border rounded"
+                        required
                     />
+                    {errors.email && <InputError errorMessage={errors.email} />}
                 </div>
                 <div>
                     <label htmlFor="password" className="block text-sm mb-1">
@@ -66,7 +74,11 @@ export default function AuthRegister() {
                         value={data.password}
                         onChange={handleChange}
                         className="w-full py-1 px-2 border rounded"
+                        required
                     />
+                    {errors.password && (
+                        <InputError errorMessage={errors.password} />
+                    )}
                 </div>
 
                 <div>
